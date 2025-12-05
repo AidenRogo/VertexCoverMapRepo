@@ -20,5 +20,19 @@ int main()
 {
     cout << "Reduction...";
 
+    // Read graph from file
+    Graph* graph = read_graph_from_file("input.txt");
+
+    if (graph != nullptr) {
+        cout << "Graph loaded successfully!" << endl;
+        print_graph(*graph, graph->adj_list.size());
+
+        // Your graph
+
+        delete graph;
+    } else {
+        cout << "Failed to load graph." << endl;
+    }
+
     return 0;
 }

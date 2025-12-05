@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <fstream>
+#include <sstream>
 
 // Define the Edge struct first
 struct Edge {
@@ -49,6 +51,32 @@ inline void print_graph(Graph const& graph, int n) {
         }
         std::cout << std::endl;
     }
+}
+
+// Helper function to read graph from file
+// File format: Each line contains "src dest" representing an edge
+// First line should contain the number of vertices
+inline Graph* read_graph_from_file(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return nullptr;
+    }
+
+    int n; // number of vertices
+    file >> n;
+
+    std::vector<Edge> edges;
+    int src, dest;
+
+    // Read edges from file
+    while (file >> src >> dest) {
+        edges.push_back({src, dest});
+    }
+
+    file.close();
+
+    return new Graph(edges, n);
 }
 
 #endif //VERTEXCOVERMAPREPO_GRAPH_H
