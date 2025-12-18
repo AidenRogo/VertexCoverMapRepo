@@ -36,7 +36,6 @@ int solve_independent_set(Graph *G, int k)
 
     // If the oracle says YES for VC, then IS is YES
     return result ? 1 : 0;
-    return 0;
 }
 
 int main()
@@ -56,8 +55,8 @@ int main()
         cout << "Independent Set of size " << k << " exists: " << (result ? "YES" : "NO") << endl;
 
         delete graph;
-    } else \
-  {
+    } else
+    {
         cout << "Failed to load graph." << endl;
     }
 
